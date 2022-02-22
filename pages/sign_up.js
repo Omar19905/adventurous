@@ -12,30 +12,74 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link, Center,
+    Link, Center, Alert, AlertIcon, AlertTitle, AlertDescription,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import axios from 'axios';
+
 export default function SignupCard() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const[isValid,setIsValid] = useState(password===""||userName===""||email==="")
+    const[isSubmitting,setIsSubmitting] = useState(false)
+
     const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(()=>{
+        if (password==="" ||userName===""||email==="")
+            setIsValid(true)
+        else setIsValid(false )
+    },[userName,password,email])
 
     function handleUserNameChange  (e) {
         setUserName(e.target.value);
-        console.log(userName)
     }
 
     function handlePasswordChange  (e) {
         setPassword(e.target.value);
-        console.log(userName)
     }
     function handleEmailChange  (e) {
         setEmail(e.target.value);
-        console.log(userName)
     }
+
+    function handleSubmit(e) {
+        setIsSubmitting(true);
+        setIsValid(true);
+        setError("");
+        axios({
+            method: 'put',
+            url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/signup',
+            data: {
+                username: userName,
+                password: password,
+                email:email
+            },
+            headers:{
+                "X-Requested-With": "XMLHttpRequest"
+            }
+
+        }) .then(function (response) {
+            console.log(response);
+            setSuccess("User have been created successfully")
+            setIsValid(false);
+            setIsSubmitting(false);
+        }).catch(function (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                setError(error.response.data.status);
+                setIsSubmitting(false)
+                setIsValid(false);
+            }
+        });
+    }
+
 
 
     return (
@@ -44,6 +88,7 @@ export default function SignupCard() {
             align={'center'}
             justify={'center'}
             bg={'gray.50'}>
+
             <HStack>
                 <Box roundedRight={"lg"} h={"100vh"} bgGradient={"linear(225deg, #cc2b5e 0%, #753a88 100%)"} w={"30vw"}>
 
@@ -74,6 +119,17 @@ export default function SignupCard() {
                     p={8}>
                     <Stack spacing={4}>
 
+                        {error!=="" && <Alert status='error'>
+                            <AlertIcon/>
+                            <AlertTitle mr={2}>Sign-up failed !</AlertTitle>
+                            <AlertDescription>{error}</AlertDescription>
+                        </Alert>}
+
+                        {success!=="" && <Alert status='success'>
+                            <AlertIcon/>
+                            <AlertTitle mr={2}>Sign-in success !</AlertTitle>
+                            <AlertDescription>{success}</AlertDescription>
+                        </Alert>}
                             <Box>
                                 <FormControl id="username" isRequired>
                                     <FormLabel>User Name</FormLabel>
@@ -102,6 +158,9 @@ export default function SignupCard() {
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button
+                                isLoading={isSubmitting}
+                                disabled={isValid}
+                                onClick={handleSubmit}
                                 rounded={"3xl"}
                                 size="lg"
                                 bg={'#cc2b5e'}

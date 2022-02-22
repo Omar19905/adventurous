@@ -9,28 +9,74 @@ import {
     InputRightElement,
     Stack,
     Button,
-    Heading,
     Text,
-    useColorModeValue,
-    Link, Center,
+    Link, Center, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-export default function SignupCard() {
-    const [userName, setUserName] = useState("");
+import axios from 'axios';
+import { setCookies ,getCookie} from 'cookies-next';
+import { useRouter } from 'next/router'
+
+
+export default function SigninCard() {
+    const router = useRouter()
+
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const[isValid,setIsValid] = useState(password===""||email==="")
+    const[isSubmitting,setIsSubmitting] = useState(false)
+
+    useEffect(()=>{
+        if (password==="" ||email==="")
+            setIsValid(true)
+        else setIsValid(false )
+    },[email,password])
 
     const [showPassword, setShowPassword] = useState(false);
 
-    function handleUserNameChange  (e) {
-        setUserName(e.target.value);
-        console.log(userName)
+    function handleEmailChange  (e) {
+        setEmail(e.target.value);
     }
 
     function handlePasswordChange  (e) {
         setPassword(e.target.value);
-        console.log(userName)
     }
+
+    function handleSubmit(e) {
+        setIsSubmitting(true);
+        setIsValid(true);
+        setError("");
+        axios({
+            method: 'post',
+            url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/signin',
+            data: {
+                password: password,
+                email: email
+            },
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+
+        }).then(function (response) {
+            setCookies('user', JSON.stringify(response.data));
+            let user = JSON.parse(getCookie('user'));
+            console.log(user.user_id);
+            router.push("/")
+
+        }).catch(function (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                setError(error.response.data.status);
+                setIsSubmitting(false)
+                setIsValid(false);
+            }
+        })
+    }
+
 
 
 
@@ -51,17 +97,24 @@ export default function SignupCard() {
                     </Text>
                 </Stack>
                 <Box
-                    minW={"30vw"}
+                    minW={"31vw"}
+                    minH={"50vh"}
                     rounded={'lg'}
                     bg={'white'}
                     boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
 
-                        <Box>
-                            <FormControl id="username" isRequired>
-                                <FormLabel>User Name</FormLabel>
-                                <Input type="text" onChange={handleUserNameChange} />
+                        {error!=="" && <Alert status='error'>
+                            <AlertIcon/>
+                            <AlertTitle mr={2}>Sign-in failed !</AlertTitle>
+                            <AlertDescription>{error}</AlertDescription>
+                        </Alert>}
+
+                        <Box >
+                            <FormControl  id="email" isRequired>
+                                <FormLabel>Email</FormLabel>
+                                <Input type="text" onChange={handleEmailChange} />
                             </FormControl>
                         </Box>
 
@@ -82,6 +135,9 @@ export default function SignupCard() {
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button
+                                isLoading={isSubmitting}
+                                disabled={isValid}
+                                onClick={handleSubmit}
                                 rounded={"3xl"}
                                 size="lg"
                                 bg={'#cc2b5e'}
