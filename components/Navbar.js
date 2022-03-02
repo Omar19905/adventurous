@@ -13,6 +13,7 @@ import {
     Text
 } from "@chakra-ui/react";
 import {checkCookies, getCookie,removeCookies} from 'cookies-next';
+import AccountSettings from "./AccountSettings";
 
 const Navbar = () => {
     let [isLogedIn,setIsLogedIn] = useState(checkCookies('user')) ;
@@ -45,6 +46,7 @@ const Navbar = () => {
             </HStack>}
 
             {isLogedIn&&
+            <>
             <Menu>
                 <MenuButton
                     as={Button}
@@ -70,15 +72,23 @@ const Navbar = () => {
                     <br />
                     <MenuDivider />
                     <MenuItem>My Activities</MenuItem>
-                    <MenuItem>Account Settings</MenuItem>
-                    <Center><Button mt={5} variant={"outline"} colorScheme={"red"} onClick={logout}>Logout</Button></Center>
+                    <MenuItem>
+                        <AccountSettings/>
+                    </MenuItem>
+                    <MenuItem>
+                        Notifications
+                    </MenuItem>
+                    <MenuItem  onClick={logout} color={"red.600"}>
+                        Logout
+                    </MenuItem>
                 </MenuList>
             </Menu>
+            </>
 
             }
 
         </HStack>
     );
-};
+}
 
 export default Navbar;

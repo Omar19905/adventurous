@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
+
 import {Box, Button, FormControl, FormLabel, HStack, Input, Text, Textarea} from "@chakra-ui/react";
 import BackButton from "../BackButton";
+import Selector from "../Selector";
 
 const EditActivity = ({activity}) => {
     const [title, setTitle] = useState(activity.username)
@@ -15,16 +17,20 @@ const EditActivity = ({activity}) => {
             <BackButton/>
             <Box mt={5} ml={"50px"}>
                 <Text mb={6} fontWeight={"bold"} fontSize={"2xl"}>Edit Activity {activity.id}</Text>
-                <HStack spacing={10}>
-                    <FormControl w={250} id="title" isRequired>
+                <HStack mx={2} spacing={10}>
+                    <FormControl  id="title" isRequired>
                         <FormLabel fontSize={"xl"}>Title</FormLabel>
                         <Input onChange={handleTitleChange} value={title} type="text"/>
                     </FormControl>
-                    <FormControl w={250} id="price" isRequired>
+                    <FormControl id="price" isRequired>
                         <FormLabel fontSize={"xl"}>Price</FormLabel>
                         <Input type="number"/>
                     </FormControl>
-                    <FormControl w={250} id="date" isRequired>
+                    <FormControl  id="category" isRequired>
+                        <FormLabel fontSize={"xl"}>Category</FormLabel>
+                        <Input type={"url"}/>
+                    </FormControl>
+                    <FormControl  id="date" isRequired>
                         <FormLabel fontSize={"xl"}>Date</FormLabel>
                         <Input type="date"/>
                     </FormControl>
@@ -35,12 +41,14 @@ const EditActivity = ({activity}) => {
                         <FormLabel fontSize={"xl"}>City</FormLabel>
                         <Input type="text"/>
                     </FormControl>
+
                     <FormControl w={250} id="picture" isRequired>
                         <FormLabel fontSize={"xl"}>Picture</FormLabel>
                         <Input w={"550px"} type="text"/>
                     </FormControl>
 
                 </HStack>
+
 
                 <FormControl w={250} id="city" isRequired>
                     <FormLabel  fontSize={"xl"}>Description</FormLabel>
