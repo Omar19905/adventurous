@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 import {Box, Button, FormControl, FormLabel, HStack, Input, Text, Textarea} from "@chakra-ui/react";
 import BackButton from "../BackButton";
-import Selector from "../Selector";
 
 const EditActivity = ({activity}) => {
     const [title, setTitle] = useState(activity.username)
