@@ -2,22 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {
     Avatar,
     Button,
-    Center,
-    HStack,
-    Link, Menu,
-    MenuButton,
-    MenuDivider,
-    MenuItem,
-    MenuList,
+    Center, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex,
+    HStack, Icon,
+    Link,
     Spacer,
-    Text
+    Text, useDisclosure, VStack
 } from "@chakra-ui/react";
 import {checkCookies, getCookie,removeCookies} from 'cookies-next';
 import AccountSettings from "./AccountSettings";
+import {FiActivity, FiClipboard, FiLogOut} from "react-icons/fi";
+import {FaRegBell} from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({children}) => {
     let [isLogedIn,setIsLogedIn] = useState(checkCookies('user')) ;
     let [user,setUser] = useState("");
+    const {isOpen, onOpen, onClose} = useDisclosure()
 
 
     useEffect(()=>{
@@ -30,64 +29,81 @@ const Navbar = () => {
         removeCookies("user");
         setIsLogedIn(false)
     }
+
+    console.log(user)
+
     return (
-        <HStack bgGradient={"linear(225deg, #cc2b5e 0%, #753a88 100%)"} px={"5rem"} position={"absolute"} top={0} w={"100%"} h={"60px"} >
+        <Flex direction={"column"} py={5} px={"5rem"}   w={"100%"}   bg={"#3e4d3a"}>
+            <HStack w={"100%"}>
             {/*Logo*/}
-            <Text fontFamily={"Yeseva One"} color={"white"} fontSize={"3xl"}>Adventurous</Text>
+            <Text fontFamily={"Yeseva One"} color={"#b2ab37"} fontSize={"4xl"}>Adventurous</Text>
 
 
             <Spacer/>
+
             {/*Sign Up / Login*/}
             {!isLogedIn && <HStack>
                 <Button _hover={{textDecoration: "none"}} as={Link} href={"/sign_in"} rounded={"3xl"} color={"white"}
                         px={"30px"} bg={"transparent"}>Sign in</Button>
-                <Button _hover={{textDecoration: "none"}} as={Link} href={"/sign_up"} rounded={"3xl"} px={"40px"}>Sign
+                <Button color={"white"} bg={"#b2ab37"} _hover={{textDecoration: "none"}} as={Link} href={"/sign_up"}
+                        rounded={"3xl"} px={"40px"}>Sign
                     Up</Button>
             </HStack>}
 
-            {isLogedIn&&
-            <>
-            <Menu>
-                <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    variant={'link'}
-                    cursor={'pointer'}
-                    minW={0}>
-                    <Avatar
-                        size={'md'}
-                    />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                    <br />
-                    <Center>
-                        <Avatar
-                            size={'2xl'}
-                        />
-                    </Center>
-                    <br />
-                    <Center>
-                        <p>{user.user_id}</p>
-                    </Center>
-                    <br />
-                    <MenuDivider />
-                    <MenuItem>My Activities</MenuItem>
-                    <MenuItem>
-                        <AccountSettings/>
-                    </MenuItem>
-                    <MenuItem>
+            {isLogedIn &&
+
+                <>
+                <Avatar src={user.profileImage} _hover={{cursor: "pointer"}} onClick={onOpen}
+                size={'md'}
+                />
+                <Drawer
+
+                        isOpen={isOpen}
+                placement='left'
+                onClose={onClose}
+                >
+                <DrawerOverlay/>
+                <DrawerContent bg={"gray.50"} roundedRight={"xl"}>
+                <DrawerCloseButton/>
+                <DrawerHeader>Account</DrawerHeader>
+
+                <DrawerBody p={0}>
+                <VStack   justify={"center"} w={"100%"} >
+                <Avatar src={user.profileImage} size={'2xl'}/>
+                <Text color={"g.1"} fontWeight={"semibold"} fontSize={"xl"}>{user.username}</Text>
+
+                    <Button mt={2} color={"g.1"} width={"100%"}>
+                        <Icon w={5} h={5} mr={5} as={FiClipboard}  />
+                        My Activities
+                    </Button>
+                    <Button mt={2} color={"g.1"} width={"100%"}>
+                        <Icon w={5} h={5} mr={5} as={FaRegBell}  />
                         Notifications
-                    </MenuItem>
-                    <MenuItem  onClick={logout} color={"red.600"}>
-                        Logout
-                    </MenuItem>
-                </MenuList>
-            </Menu>
-            </>
+                    </Button>
+
+                    <AccountSettings setUser={setUser} user={user}/>
+
+
+                </VStack>
+
+                </DrawerBody>
+
+                <DrawerFooter>
+                <Button colorScheme={"red"} variant='outline' mr={3} onClick={logout}>
+                Logout <Icon  as={FiLogOut}  />
+                </Button>
+                </DrawerFooter>
+                </DrawerContent>
+                </Drawer>
+                </>
 
             }
 
         </HStack>
+
+            {children}
+
+        </Flex>
     );
 }
 

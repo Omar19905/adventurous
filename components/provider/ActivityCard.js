@@ -9,9 +9,9 @@ const ActivityCard = ({activities,setActivity}) => {
     const activitiesList = activities.map((activity) => (
         <div key={activity.id}>
             <Box p={3} mt={5} rounded={"2xl"} w={"90%"} mx={"auto"} minH={"130px"}
-                 bgGradient={"linear(200deg, #cc2b5e 0%, #753a88 100%)"}>
+                 bg={"g.1"}>
                 <HStack mb={2}>
-                    <Text fontSize={"2xl"} fontWeight={"bold"} color={"white"}>{activity.username}</Text>
+                    <Text fontSize={"2xl"} fontWeight={"bold"} color={"g.2"}>{activity.username}</Text>
                     <Spacer/>
 
                     <Menu>
@@ -19,19 +19,19 @@ const ActivityCard = ({activities,setActivity}) => {
                                     _active={{backgroundColor: "transparent"}} color={"white"} as={Button}>
                             <Icon as={FiMoreHorizontal} mt={"27%"} color={"#fff"} w={6} h={6}/>
                         </MenuButton>
-                        <MenuList color={"#753a88"}>
+                        <MenuList color={"g.2"}>
                             <MenuItem onClick={() => {
                                 setActivity(activity)
                                 router.push('/provider/edit', undefined, {shallow: true});
 
                             }}
                             >
-                                <Icon pr={1} as={FiEdit} color={"#753a88"} w={6} h={6}/>
-                                Edit
+                                <Icon  pr={1} as={FiEdit} color={"g.2"} w={6} h={6}/>
+                                <Text fontWeight={"semibold"} color={"g.1"}>Edit</Text>
                             </MenuItem>
                             <MenuItem>
-                                <Icon pr={1} as={FiTrash} color={"#753a88"} w={6} h={6}/>
-                                Delete
+                                <Icon pr={1} as={FiTrash} color={"g.2"} w={6} h={6}/>
+                                <Text fontWeight={"semibold"} color={"g.1"}>Delete</Text>
                             </MenuItem>
                         </MenuList>
                     </Menu>

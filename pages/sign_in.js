@@ -60,6 +60,7 @@ export default function SigninCard() {
             }
 
         }).then(function (response) {
+            console.log(response.data)
             setCookies('user', JSON.stringify(response.data));
             let user = JSON.parse(getCookie('user'));
             console.log(user.user_id);
@@ -89,7 +90,7 @@ export default function SigninCard() {
 
             <Stack spacing={8} mx={'auto'}  py={12} px={6}>
                 <Stack align={'center'}>
-                    <Text  fontSize={'5xl'} textAlign={'center'}>
+                    <Text color={"g.1"}  fontSize={'5xl'} textAlign={'center'}>
                         Sign in
                     </Text>
                     <Text fontSize={'lg'} color={'gray.600'}>
@@ -100,8 +101,6 @@ export default function SigninCard() {
                     minW={"31vw"}
                     minH={"50vh"}
                     rounded={'lg'}
-                    bg={'white'}
-                    boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
 
@@ -113,13 +112,13 @@ export default function SigninCard() {
 
                         <Box >
                             <FormControl  id="email" isRequired>
-                                <FormLabel>Email</FormLabel>
+                                <FormLabel fontSize={"xl"} color={"g.1"}>Email</FormLabel>
                                 <Input type="text" onChange={handleEmailChange} />
                             </FormControl>
                         </Box>
 
                         <FormControl id="password" isRequired>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel fontSize={"xl"} color={"g.1"}>Password</FormLabel>
                             <InputGroup>
                                 <Input onChange={handlePasswordChange} type={showPassword ? 'text' : 'password'} />
                                 <InputRightElement h={'full'}>
@@ -140,17 +139,19 @@ export default function SigninCard() {
                                 onClick={handleSubmit}
                                 rounded={"3xl"}
                                 size="lg"
-                                bg={'#cc2b5e'}
+                                bg={'g.2'}
+                                w={205}
+                                mx={"auto"}
                                 color={'white'}
                                 _hover={{
-                                    bg: '#a61e47',
+                                    bg: 'g.2',
                                 }}>
                                 Sign in
                             </Button>
                         </Stack>
                         <Stack pt={6}>
                             <Text  align={'center'}>
-                                forget password? <Link href={"/forget"} color={'#cc2b5e'}>click here</Link>
+                                forget password? <Link href={"/forget"} color={'g.2'}>click here</Link>
                             </Text>
                         </Stack>
                     </Stack>
@@ -158,12 +159,12 @@ export default function SigninCard() {
 
             </Stack>
             <HStack>
-                <Box roundedRight={"lg"} h={"100vh"} bgGradient={"linear(225deg, #cc2b5e 0%, #753a88 100%)"} w={"30vw"}>
+                <Box roundedRight={"lg"} h={"100vh"} bg={"g.1"} w={"30vw"}>
 
-                    <Center flexDir={"column"} >
-                        <Text color={"white"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
+                    <Center  flexDir={"column"} >
+                        <Text  color={"white"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
                         <Text mt={5} color={"white"} fontSize={"2xl"}> add and manage activities with us</Text>
-                        <Button _hover={{textDecoration: "none"}} as={Link} href={"/provider/sign_in"} mt={2} size={"lg"} rounded={"3xl"} color={"white"} bg={"transparent"} border={"4px white solid"}>
+                        <Button _hover={{textDecoration: "none"}} as={Link} href={"/provider/sign_in"} mt={2} size={"lg"} rounded={"3xl"} color={"g.2"} bg={"transparent"} >
                             Sign in for Providers
                         </Button>
                     </Center>

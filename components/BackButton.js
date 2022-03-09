@@ -7,9 +7,9 @@ const BackButton = () => {
     const router = useRouter()
 
     return (
-        <Button color={"#753a88"} m={3} onClick={() => router.push('/provider/dashboard', undefined, {shallow: true})}
-                bg={"gray.100"} rounded={"full"}>
-            <Icon as={FiChevronsLeft} w={6} h={6} color={"#753a88"}/>
+        <Button color={"g.1"} m={1} onClick={() => router.push('/provider/dashboard', undefined, {shallow: true})}
+                bg={"transparent"} rounded={"full"}>
+            <Icon as={FiChevronsLeft} w={6} h={6} color={"g.2"}/>
             Back
         </Button>
     );

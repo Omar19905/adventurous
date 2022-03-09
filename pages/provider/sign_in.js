@@ -43,7 +43,7 @@ export default function SignupCard() {
 
             <Stack spacing={8} mx={'auto'}  py={12} px={6}>
                 <Stack align={'center'}>
-                    <Text  fontSize={'5xl'} textAlign={'center'}>
+                    <Text color={"#3e4d3a"} fontSize={'5xl'} textAlign={'center'}>
                         Sign in
                     </Text>
                     <Text fontSize={'lg'} color={'gray.600'}>
@@ -53,8 +53,7 @@ export default function SignupCard() {
                 <Box
                     minW={"30vw"}
                     rounded={'lg'}
-                    bg={'white'}
-                    boxShadow={'lg'}
+
                     p={8}>
                     <Stack spacing={4}>
 
@@ -82,9 +81,11 @@ export default function SignupCard() {
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button
+                                w={205}
+mx={"auto"}
                                 rounded={"3xl"}
                                 size="lg"
-                                bg={'#753a88'}
+                                bg={'#b2ab37'}
                                 color={'white'}
                                 _hover={{
                                     bg: '#5b296b',
@@ -93,8 +94,8 @@ export default function SignupCard() {
                             </Button>
                         </Stack>
                         <Stack pt={6}>
-                            <Text  align={'center'}>
-                                forget password? <Link href={"/forget"} color={'#753a88'}>click here</Link>
+                            <Text color={"#3e4d3a"}  align={'center'}>
+                                forget password? <Link href={"/forget"} color={'#b2ab37'}>click here</Link>
                             </Text>
                         </Stack>
                     </Stack>
@@ -102,10 +103,10 @@ export default function SignupCard() {
 
             </Stack>
             <HStack>
-                <Box roundedRight={"lg"} h={"100vh"} bgGradient={"linear(-225deg, #753a88 0%, #cc2b5e 100%)"} w={"30vw"}>
+                <Box roundedLeft={"lg"} h={"100vh"} bg={"#3e4d3a"} w={"30vw"}>
 
                     <Center flexDir={"column"} >
-                        <Text color={"white"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
+                        <Text color={"#b2ab37"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
                         <Text  color={"white"} fontSize={"2xl"}> for providers</Text>
                     </Center>
 

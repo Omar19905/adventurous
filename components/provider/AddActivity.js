@@ -11,7 +11,7 @@ const AddActivity = () => {
 
         <>
             <BackButton/>
-            <Box mt={5} ml={"50px"}>
+            <Box mt={0} ml={"50px"}>
             <Text mb={6} fontWeight={"bold"} fontSize={"2xl"}>Add Activity</Text>
             <HStack spacing={10}>
                 <FormControl w={250} id="title" isRequired>
@@ -45,7 +45,8 @@ const AddActivity = () => {
                     <Textarea h={"130px"} w={"500px"} size={"md"}/>
                 </FormControl>
 
-                <Button _hover={{backgroundColor:"#753a88",color:"white"}} px={25} position={"absolute"} bottom={10} right={10} bg={"transparent" } border={"solid 2px #753a88"} color={"#753a88"}>Add Activity</Button>
+
+                <Button _hover={{backgroundColor:"#b2ab37",color:"white"}} px={25} position={"absolute"} bottom={10} right={10} bg={"transparent" } border={"solid 2px #b2ab37"} color={"g.2"}>Add Activity</Button>
 
         </Box>
         </>

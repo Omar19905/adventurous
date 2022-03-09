@@ -4,8 +4,8 @@ import Clock from "react-live-clock";
 
 const Header = () => {
     return (
-        <HStack fontWeight={"bold"} color={"#753a88"} my={7} mx={4}>
-            <Text fontSize={"2xl"} fontWeight={"bold"}>Welcome, CompanName</Text>
+        <HStack fontWeight={"bold"} color={"g.2"} my={7} mx={4}>
+            <Text color={"g.2"} fontSize={"2xl"} fontWeight={"bold"}>Welcome, CompanName</Text>
             <Spacer/>
             <Clock
                 format={'dddd, MMMM Do , h:mm a'}

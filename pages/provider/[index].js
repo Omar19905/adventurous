@@ -47,17 +47,17 @@ const Index = () => {
             <HStack  mt={10} bg={"gray.50"}>
                 <Box  overflowY={"scroll"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"25vw"} h={"85vh"}>
                     <HStack h={16} bg={"white"} position={"sticky"} top={0} my={7} mx={4}>
-                        <Text fontSize={"2xl"} fontWeight={"bold"} color={"#753a88"}>Activities</Text>
+                        <Text fontSize={"2xl"} fontWeight={"bold"} color={"g.2"}>Activities</Text>
                         <Spacer/>
                         <Button onClick={() => router.push('/provider/add', undefined, {shallow: true})}
                                 bg={"transparent"}>
-                            <AddIcon w={6} h={6} color={"#753a88"}/>
+                            <AddIcon w={6} h={6} color={"g.2"}/>
                         </Button>
                     </HStack>
 
                     <Divider orientation={"horizontal"}/>
 
-                    {/*Activity card*/}
+                    {/*Activity card | list*/}
                     <ActivityCard activities={activities} setActivity={setActivity}/>
 
                 </Box>
