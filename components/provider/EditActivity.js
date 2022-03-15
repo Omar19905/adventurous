@@ -54,7 +54,7 @@ const EditActivity = ({activity}) => {
                     <Textarea h={"130px"} w={"500px"} size={"md"}/>
                 </FormControl>
 
-                <Button _hover={{backgroundColor:"#b2ab37",color:"white"}} px={50} position={"absolute"} bottom={10} right={10} bg={"transparent" } border={"solid 2px #b2ab37"} color={"#b2ab37"}>Save</Button>
+                <Button _hover={{backgroundColor:"g.2",color:"white"}} px={50} position={"absolute"} bottom={10} right={10} variant={"outline"} color={"g.2"}>Save</Button>
 
             </Box>
         </>

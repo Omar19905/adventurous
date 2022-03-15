@@ -7,7 +7,7 @@ import Filters from "./Filters";
 const Header = () => {
     return (
         <Navbar>
-            <Box textAlign={"center"} color={"white"} fontSize={"6xl"} w='100%' h='25vh' >
+            <Box textAlign={"center"} color={"white"} fontSize={"6xl"} w='100%' h='21vh' >
                 <Typist cursor={{
                     show: true,
                     blink: true,

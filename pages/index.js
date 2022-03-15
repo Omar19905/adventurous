@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import {Box, Text} from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
+import ActivityCard from "../components/home/ActivityCard";
 
 export default function Home() {
   return (
@@ -20,10 +21,7 @@ export default function Home() {
 
 
 
-              <Box mt={100} color={"#3e4d3a"}>
-                  <h1 className={styles.title}>
-                      Welcome to <Text display={"inline"} color={"g.2"}>Adventurous !</Text>
-                  </h1></Box>
+              <ActivityCard/>
 
 
 

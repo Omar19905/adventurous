@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Box, Button, Divider, HStack, Input} from "@chakra-ui/react";
 import Select from 'react-select'
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from 'react-modern-calendar-datepicker';
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -9,12 +11,13 @@ const options = [
 ]
 
 const Filters = () => {
-    const [date, setDate] = useState();
-    console.log(date)
+    const [selectedDay, setSelectedDay] = useState(null);
+
 
     return (
         <HStack zIndex={"0"} position={"relative"} top={10} ml={10} rounded={"100px"}  h={16} shadow={"md"} bg={"white"} w={"85%"} px={6} justify={"center"} mx={"auto"} spacing={10}>
             <Box py={"4px"}  w={"50%"}>
+
 
                 <Input placeholder={"Date"} type={"date"}/>
 
@@ -39,7 +42,7 @@ const Filters = () => {
             {/*    <option value='option1'>Option 1</option>*/}
             {/*    <option value='option1'>Option 1</option>*/}
             {/*</Select>*/}
-            <Button _hover={{backgroundColor:"g.1"}}  color={"white"} bg={"g.1"} rounded={"3xl"} w={"35%"}>Discover Activities</Button>
+            <Button _hover={{backgroundColor:"g.1"}}  color={"white"} bg={"g.2"} rounded={"3xl"} w={"35%"}>Discover Activities</Button>
 
         </HStack>
 

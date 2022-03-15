@@ -169,7 +169,7 @@ useEffect(()=>{
                             isLoading={isSubmitting}
                             onClick={handleSubmit}
 
-                            _hover={{backgroundColor:"#8f892c"}} h={8} px={10} color={"white"} bg={"g.2"} mr={3}>
+                            _hover={{backgroundColor:"g.2"}} h={8} px={10} color={"white"} bg={"g.2"} mr={3}>
                             Save
                         </Button>
                         <Button h={8} px={10} variant={"outline"}  onClick={onClose}>Cancel</Button>

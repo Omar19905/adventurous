@@ -41,7 +41,7 @@ const ActivityCard = ({activities,setActivity}) => {
                 <HStack>
                     <Icon as={FiCalendar} color={"white"} w={6} h={6}/>
                     <Text fontSize={"lg"} fontWeight={"light"} color={"white"}>
-                        February 17th
+                        March 17th
                     </Text>
                 </HStack>
 

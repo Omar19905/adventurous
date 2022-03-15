@@ -37,15 +37,15 @@ const Index = () => {
     const [activity, setActivity] = useState("")
 
     useEffect(()=>{
-        axios.get("https://jsonplaceholder.typicode.com/users/")
+        axios.get("https://jsonplaceholder.typicode.com/users/?_limit=4")
             .then((responce)=>{
                 setActivities(responce.data)
             })
     },[])
     return (
         <>
-            <HStack  mt={10} bg={"gray.50"}>
-                <Box  overflowY={"scroll"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"25vw"} h={"85vh"}>
+            <HStack  mt={6} bg={"gray.50"}>
+                <Box  overflowY={"scroll"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"25vw"} h={"93vh"}>
                     <HStack h={16} bg={"white"} position={"sticky"} top={0} my={7} mx={4}>
                         <Text fontSize={"2xl"} fontWeight={"bold"} color={"g.2"}>Activities</Text>
                         <Spacer/>
@@ -63,7 +63,7 @@ const Index = () => {
                 </Box>
 
                 {/*right side*/}
-                <Box position={"relative"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"65vw"} minH={"85vh"}>
+                <Box position={"relative"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"65vw"} minH={"93vh"}>
 
                   <Header/>
 

@@ -33,10 +33,10 @@ const Navbar = ({children}) => {
     console.log(user)
 
     return (
-        <Flex direction={"column"} py={5} px={"5rem"}   w={"100%"}   bg={"#3e4d3a"}>
+        <Flex direction={"column"} py={5} px={"5rem"}   w={"100%"}   bg={"g.1"}>
             <HStack w={"100%"}>
             {/*Logo*/}
-            <Text fontFamily={"Yeseva One"} color={"#b2ab37"} fontSize={"4xl"}>Adventurous</Text>
+            <Text fontFamily={"Yeseva One"} color={"g.2"} fontSize={"4xl"}>Adventurous</Text>
 
 
             <Spacer/>
@@ -45,7 +45,7 @@ const Navbar = ({children}) => {
             {!isLogedIn && <HStack>
                 <Button _hover={{textDecoration: "none"}} as={Link} href={"/sign_in"} rounded={"3xl"} color={"white"}
                         px={"30px"} bg={"transparent"}>Sign in</Button>
-                <Button color={"white"} bg={"#b2ab37"} _hover={{textDecoration: "none"}} as={Link} href={"/sign_up"}
+                <Button color={"white"} bg={"g.2"} _hover={{textDecoration: "none"}} as={Link} href={"/sign_up"}
                         rounded={"3xl"} px={"40px"}>Sign
                     Up</Button>
             </HStack>}
