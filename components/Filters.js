@@ -15,7 +15,7 @@ const Filters = () => {
 
 
     return (
-        <HStack zIndex={"0"} position={"relative"} top={10} ml={10} rounded={"100px"}  h={16} shadow={"md"} bg={"white"} w={"85%"} px={6} justify={"center"} mx={"auto"} spacing={10}>
+        <HStack zIndex={"1"} position={"relative"} top={10} ml={10} rounded={"100px"}  h={16} shadow={"md"} bg={"white"} w={"85%"} px={6} justify={"center"} mx={"auto"} spacing={10}>
             <Box py={"4px"}  w={"50%"}>
 
 

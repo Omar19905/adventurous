@@ -6,6 +6,7 @@ import {Box, Text} from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
 import ActivityCard from "../components/home/ActivityCard";
+import ActivitiesList from "../components/home/ActivitesList";
 
 export default function Home() {
   return (
@@ -21,7 +22,8 @@ export default function Home() {
 
 
 
-              <ActivityCard/>
+
+              <ActivitiesList/>
 
 
 

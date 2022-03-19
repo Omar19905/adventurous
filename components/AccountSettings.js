@@ -27,6 +27,7 @@ import {
 import {FiClipboard, FiSettings} from "react-icons/fi";
 import axios from "axios";
 import {getCookie, setCookies} from "cookies-next";
+import {MdOutlineManageAccounts} from "react-icons/md";
 
 
 
@@ -108,7 +109,7 @@ useEffect(()=>{
     return (
         <>
             <Button mt={2} color={"g.1"} width={"100%"} onClick={onOpen}>
-                <Icon w={5} h={5} mr={3} as={FiSettings}  />
+                <Icon ml={6} w={6} h={6} mr={3} as={MdOutlineManageAccounts}  />
                 Account Settings
             </Button>
 

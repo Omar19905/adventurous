@@ -5,7 +5,6 @@ import {useRouter} from 'next/router'
 
 const ActivityCard = ({activities,setActivity}) => {
     const router = useRouter()
-    console.log(activities)
     const activitiesList = activities.map((activity) => (
         <div key={activity.id}>
             <Box p={3} mt={5} rounded={"2xl"} w={"90%"} mx={"auto"} minH={"130px"}
