@@ -1,15 +1,47 @@
 import React from 'react';
-import {Flex} from "@chakra-ui/react";
+import {Avatar, Box, Flex, HStack, Icon, Spacer, Text} from "@chakra-ui/react";
 import BackButton from "../BackButton";
 import TotalSales from "./statistics/TotalSales";
+import MonthlySales from "./statistics/Monthly Sales";
+import TotalOrders from "./statistics/TotalOrders";
+import {HiStar} from "react-icons/hi";
+import MonthlyTarget from "./statistics/MonthlyTarget";
 
 const Statistics = () => {
     return (
         <>
             <BackButton/>
-            <Flex mx={5} p={6} w={"100%"}>
-                <TotalSales/>
-        </Flex>
+            <HStack  alignItems={"start"}  px={2} w={"100%"}>
+                {/*left*/}
+                <Box  width={"80%"}>
+                        <MonthlySales/>
+                    <Box p={3} mt={5}>
+                        <Text fontSize={"lg"} fontWeight={"semibold"} color={"g.1"}>
+                            Top rated activity
+                        </Text>
+
+                        <HStack mt={2} w={"100%"}>
+                            <Avatar src={"https://images.unsplash.com/photo-1604156788872-fa65cd2575f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"}/>
+                            <Text fontSize={"lg"}  color={"g.1"}>Hot Air Ride</Text>
+                            <Spacer/>
+                            <Flex alignItems={"start"} fontSize={"lg"}>
+                                4.8
+                                <Icon w={6} h={6} color={"#fcd34c"} as={HiStar}/>
+                            </Flex>
+                        </HStack>
+                    </Box>
+                </Box>
+
+                {/*right*/}
+                <Box  width={"20%"}>
+                    <TotalOrders/>
+                    <br/>
+                    <TotalSales/>
+                    <br/>
+                    <MonthlyTarget/>
+                </Box>
+
+        </HStack>
         </>
     );
 };

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Center, SimpleGrid, Spinner} from "@chakra-ui/react";
+import {Center, CircularProgress, SimpleGrid, Spinner} from "@chakra-ui/react";
 import ActivityCard from "./ActivityCard";
 import axios from "axios";
 
@@ -24,7 +24,11 @@ const ActivitiesList = () => {
     },[])
     if (isLoading)
         return (
-            <Center mt={36}><Spinner w={20} h={20} color={"g.2"}/></Center>
+            <Center>
+                <CircularProgress mt={"9%"} size='100px' thickness='2px' isIndeterminate color='g.2'/>
+            </Center>
+
+
         )
     return (
         <SimpleGrid mb={"5rem"}  mx={"5rem"} columns={3} spacing={10}>

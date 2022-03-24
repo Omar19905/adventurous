@@ -3,12 +3,12 @@ import {Box, Stat, StatArrow, StatHelpText, StatLabel, StatNumber} from "@chakra
 
 const TotalSales = () => {
     return (
-        <Stat >
-            <StatLabel color={"g.1"} fontWeight={"semibold"}>Total Sales</StatLabel>
+        <Stat rounded={"lg"}  textAlign={"center"} p={4} bg={"gray.50"} >
+            <StatLabel fontSize={"lg"} color={"g.1"} fontWeight={"semibold"}>Total Sales</StatLabel>
             <StatNumber color={"g.2"}>$345,670</StatNumber>
             <StatHelpText>
                 <StatArrow type='increase' />
-                23.36%
+                10%
             </StatHelpText>
         </Stat>
     );

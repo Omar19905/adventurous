@@ -17,9 +17,13 @@ import Rating from 'react-rating';
 import {HiOutlineStar, HiStar} from "react-icons/hi";
 import RatingsList from "../../components/home/RatingsList";
 import Payment from "../../components/home/Payment";
+import {BiCommentAdd} from "react-icons/bi";
+import Review from "../../components/home/Review";
+import {checkCookies} from "cookies-next";
 
 const ActivityPage = () => {
     const [total,setTotal] = useState(250)
+    const [isLoggedin,setIsLoggedin] = useState(checkCookies('user'))
     const [text,setText] = useState("buy a ticket")
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
         useNumberInput({
@@ -41,6 +45,8 @@ const ActivityPage = () => {
         else
             setText("buy a ticket")
     },[input])
+
+
     return (
         <>
             <Navbar/>
@@ -98,7 +104,10 @@ const ActivityPage = () => {
                 </Center>
 
                 <Box mx={"2rem"} mt={10}>
-                    <Text mt={2} color={"g.2"} fontWeight={"bold"} fontSize={"4xl"}>Reviews </Text>
+                    <HStack mb={7} alignItems={"baseline"}>
+                        <Text mt={2} color={"g.2"} fontWeight={"bold"} fontSize={"4xl"}>Reviews</Text>
+                        {isLoggedin &&<Review/>}
+                    </HStack >
                         <RatingsList/>
                 </Box>
 
