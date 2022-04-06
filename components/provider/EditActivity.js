@@ -4,18 +4,18 @@ import {Box, Button, FormControl, FormLabel, HStack, Input, Text, Textarea} from
 import BackButton from "../BackButton";
 
 const EditActivity = ({activity}) => {
-    const [title, setTitle] = useState(activity.username)
+    const [title, setTitle] = useState(activity.title)
     const handleTitleChange = (event) => setTitle(event.target.value)
     console.log(activity)
 
     useEffect(()=>{
-        setTitle(activity.username)
+        setTitle(activity.title)
     },[activity])
     return (
         <>
             <BackButton/>
             <Box mt={5} ml={"50px"}>
-                <Text mb={6} fontWeight={"bold"} fontSize={"2xl"}>Edit Activity {activity.id}</Text>
+                <Text mb={6} fontWeight={"bold"} fontSize={"2xl"}>Edit Activity</Text>
                 <HStack mx={2} spacing={10}>
                     <FormControl  id="title" isRequired>
                         <FormLabel fontSize={"xl"}>Title</FormLabel>

@@ -11,21 +11,21 @@ const Main = () => {
                 <Box _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
                     <Center><Icon as={FiUser} mt={"27%"} color={"g.2"} w={9} h={9}/></Center>
                 </Box>
-                <Text fontSize={"lg"} fontWeight={"bold"}>Account</Text>
+                <Text color={"g.1"} fontSize={"lg"} fontWeight={"bold"}>Account</Text>
             </VStack>
 
             <VStack >
                 <Box _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
                     <Center><Icon as={FiBell} mt={"27%"} color={"g.2"} w={9} h={9}/></Center>
                 </Box>
-                <Text fontSize={"lg"} fontWeight={"bold"}>Send Notifications</Text>
+                <Text color={"g.1"} fontSize={"lg"} fontWeight={"bold"}>Send Notifications</Text>
             </VStack>
 
             <VStack onClick={() => router.push('/provider/statistics', undefined, {shallow: true})} >
                 <Box  _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
                     <Center><Icon  as={FiActivity} mt={"27%"} color={"g.2"} w={9} h={9}/></Center>
                 </Box>
-                <Text fontSize={"lg"} fontWeight={"bold"}>Statistics</Text>
+                <Text color={"g.1"} fontSize={"lg"} fontWeight={"bold"}>Statistics</Text>
             </VStack>
 
 

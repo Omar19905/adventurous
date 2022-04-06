@@ -38,37 +38,39 @@ const Index = () => {
     // for edit an activity
     const [activity, setActivity] = useState("")
 
-    let [isLogedIn,setIsLogedIn] = useState(checkCookies('provider')) ;
+    let [isLogedIn, setIsLogedIn] = useState(checkCookies('provider'));
 
-     let [provider,setProvider] = useState("");
 
-    useEffect(()=>{
+    let [isLoading, setIsloading] = useState(true);
+
+    let [provider, setProvider] = useState("");
+
+    useEffect(() => {
         if (isLogedIn)
             setProvider(JSON.parse(getCookie("provider")))
         console.log(provider.company_name)
         getActivities()
-    },[isLogedIn])
+    }, [isLogedIn])
 
 
-
-
-    function getActivities(){
+    function getActivities() {
+        setIsloading(true)
         let provider_cookies = JSON.parse(getCookie("provider"))
-        console.log("provider iddd:"+provider_cookies._id.$oid)
-
+        let provider_id = provider_cookies._id.$oid
         axios({
-            method: 'GET',
+            method: 'get',
             url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/get/provider/activities',
-            data:{
-                activity_provider_id:provider_cookies._id.$oid
+            params: {
+                activity_provider_id: provider_id,
             },
             headers: {
-                "X-Requested-With": "XMLHttpRequest"
+                "X-Requested-With": "XMLHttpRequest",
             }
 
         }).then(function (response) {
             console.log(response.data)
             setActivities(response.data)
+            setIsloading(false)
         }).catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
@@ -79,11 +81,10 @@ const Index = () => {
     }
 
 
-
     return (
         <>
-            <HStack  mt={6} bg={"gray.50"}>
-                <Box  overflowY={"scroll"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"25vw"} h={"93vh"}>
+            <HStack mt={6} bg={"gray.50"}>
+                <Box overflowY={"scroll"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"25vw"} h={"93vh"}>
                     <HStack h={16} bg={"white"} position={"sticky"} top={0} my={7} mx={4}>
                         <Text fontSize={"2xl"} fontWeight={"bold"} color={"g.2"}>Activities</Text>
                         <Spacer/>
@@ -96,20 +97,20 @@ const Index = () => {
                     <Divider orientation={"horizontal"}/>
 
                     {/*Activity card | list*/}
-                    <ActivityCard activities={activities} setActivity={setActivity}/>
+                    <ActivityCard getActivities={getActivities} isLoading={isLoading} activities={activities} setActivity={setActivity}/>
 
                 </Box>
 
                 {/*right side*/}
                 <Box position={"relative"} rounded={"lg"} mx={12} shadow={"xl"} bg={"white"} w={"65vw"} minH={"93vh"}>
 
-                  <Header cname={provider.company_name}/>
+                    <Header cname={provider.company_name}/>
 
                     <Divider orientation={"horizontal"}/>
 
                     {index === "dashboard" && <Main/>}
                     {index === "statistics" && <Statistics/>}
-                    {index === "add" && <AddActivity/>}
+                    {index === "add" && <AddActivity getActivities={getActivities}/>}
                     {index === "edit" && <EditActivity activity={activity}/>}
                 </Box>
 

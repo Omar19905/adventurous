@@ -19,7 +19,7 @@ import axios from "axios";
 import {getCookie, setCookies} from "cookies-next";
 import {useRouter} from "next/router";
 
-const AddActivity = () => {
+const AddActivity = ({getActivities}) => {
     const router = useRouter()
     const toast = useToast()
 
@@ -32,7 +32,6 @@ const AddActivity = () => {
     const [price, setPrice] = useState("");
     const [show, setShow] = useState(false);
 
-    const id = 'test-toast'
 
     function handleTitleChange  (e) {
         setTitle(e.target.value);
@@ -62,7 +61,7 @@ const AddActivity = () => {
             console.log(provider_cookies._id.$oid)
 
             axios({
-                method: 'put',
+                method: 'post',
                 url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/Activity/add',
                 data: {
                     activity_provider_id: provider_cookies._id.$oid,
@@ -80,10 +79,16 @@ const AddActivity = () => {
 
             }).then(function (response) {
                 console.log(response.data)
-                setShow(true)
-                setInterval(() => {
-                    setShow(false)
-                }, 4000);
+                router.push('/provider/dashboard', undefined, {shallow: true})
+                getActivities()
+                toast({
+                    title: 'Activity added',
+                    position:"top-right",
+                    description: "your activity added successfully.",
+                    status: 'success',
+                    duration: 8000,
+                    isClosable: true,
+                })
             }).catch(function (error) {
                 if (error.response) {
                     // The request was made and the server responded with a status code
@@ -95,20 +100,10 @@ const AddActivity = () => {
         }
 
 
-function test (){
-    setShow(true)
-    setInterval(() => {
-        setShow(false)
-    }, 4000);
-    }
 
     return (
 
         <>
-            {show && <Alert w={"fit-content"} h={20} rounded={"md"} top={10} right={"-1"} position={"fixed"} status='success' variant='solid'>
-                <AlertIcon />
-                <Text fontWeight={"semibold"} color={"white"}>Activity added successfully!</Text>
-            </Alert>}
             <BackButton/>
             <Box mt={0} ml={"50px"}>
                 <Center><Text mx={"auto"} mb={6} fontWeight={"semibold"} color={"g.1"} fontSize={"2xl"}>Add Activity</Text></Center>
@@ -145,7 +140,10 @@ function test (){
                 </FormControl>
 
 
-                <Button onClick={handleSubmit} _hover={{backgroundColor:"g.2",color:"white"}} px={25} position={"absolute"} bottom={10} right={10} bg={"g.2"}
+                <Button onClick={()=>{
+                    handleSubmit()
+
+                }} _hover={{backgroundColor:"g.2",color:"white"}} px={25} position={"absolute"} bottom={10} right={10} bg={"g.2"}
                         color={"white"}>Add Activity</Button>
         </Box>
         </>

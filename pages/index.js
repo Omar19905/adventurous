@@ -2,11 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Navbar from "../components/Navbar";
-import {Box, Text} from "@chakra-ui/react";
+import {Box, Button, Text} from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
 import ActivityCard from "../components/home/ActivityCard";
 import ActivitiesList from "../components/home/ActivitesList";
+import axios from "axios";
 
 export default function Home() {
   return (
@@ -19,7 +20,6 @@ export default function Home() {
               </Head>
 
               <Header/>
-
 
 
 

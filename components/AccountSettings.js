@@ -88,7 +88,15 @@ const AccountSettings = ({user,setUser}) => {
             setUser(JSON.parse(getCookie("user")))
             console.log(user.user_id);
             setIsSubmitting(false);
-            setSuccess(true)
+            toast({
+                title: 'Success',
+                position:"top-right",
+                description: "Account settings updated  successfully.",
+                status: 'success',
+                duration: 7000,
+                isClosable: true,
+            })
+
 
         }).catch(function (error) {
             if (error.response) {
@@ -128,11 +136,7 @@ useEffect(()=>{
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl>
-                            {success!=="" && <Alert status='success'>
-                                <AlertIcon/>
-                                <AlertTitle >Success !</AlertTitle>
-                                <AlertDescription>Account settings updated  successfully </AlertDescription>
-                            </Alert>}
+
                             <FormLabel>User name</FormLabel>
                             <Input onChange={onUsernameChange}  placeholder='username' value={username} />
                         </FormControl>

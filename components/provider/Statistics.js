@@ -21,8 +21,8 @@ const Statistics = () => {
                         </Text>
 
                         <HStack mt={2} w={"100%"}>
-                            <Avatar src={"https://images.unsplash.com/photo-1604156788872-fa65cd2575f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"}/>
-                            <Text fontSize={"lg"}  color={"g.1"}>Hot Air Ride</Text>
+                            <Avatar src={"https://images.unsplash.com/photo-1554254648-2d58a1bc3fd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"}/>
+                            <Text fontSize={"lg"}  color={"g.1"}>Cruise Trip</Text>
                             <Spacer/>
                             <Flex alignItems={"start"} fontSize={"lg"}>
                                 4.8

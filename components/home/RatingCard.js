@@ -3,14 +3,15 @@ import {Avatar, Box, Divider, HStack, Icon, Spacer, Text, VStack} from "@chakra-
 import {HiStar} from "react-icons/hi";
 import Rating from "react-rating";
 
-const RatingCard = () => {
+const RatingCard = ({rating}) => {
+    console.table(rating)
     return (
         <Box mx={10} rounded={"md"} p={4} minW={"600px"} >
                 <HStack alignItems={"start"}>
                     <HStack>
                         <Avatar/>
-                        <Box><Text color={"g.1"} fontSize={"2xl"}>Omar Alwahhabi</Text>
-                            <Rating fractions={2} readonly initialRating={4.5}
+                        <Box><Text color={"g.1"} fontSize={"2xl"}>{rating.commenter_name}</Text>
+                            <Rating fractions={2} readonly initialRating={rating.rating}
                                     emptySymbol={<Icon color={"#dfdfdf"} w={25} h={25} as={HiStar}/>}
                                     fullSymbol={<Icon color={"#fcd34c"} w={25} h={25} as={HiStar}/>}/>
                         </Box>
@@ -21,7 +22,7 @@ const RatingCard = () => {
 
                 </HStack>
             <Box mt={5}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, optio?
+                {rating.comment}
 
             </Box>
             <Divider mt={2}/>

@@ -12,6 +12,8 @@ import {checkCookies, getCookie,removeCookies} from 'cookies-next';
 import AccountSettings from "./AccountSettings";
 import {FiActivity, FiClipboard, FiLogOut} from "react-icons/fi";
 import {FaRegBell} from "react-icons/fa";
+import MyTickets from "./MyTickets";
+import {useRouter} from "next/router";
 
 const Navbar = ({children}) => {
     let [isLogedIn,setIsLogedIn] = useState(checkCookies('user')) ;
@@ -31,12 +33,13 @@ const Navbar = ({children}) => {
     }
 
     console.log(user)
+    let router = useRouter();
 
     return (
         <Flex direction={"column"} py={5} px={"5rem"}   w={"100%"}   bg={"g.1"}>
             <HStack w={"100%"}>
             {/*Logo*/}
-            <Text fontFamily={"Yeseva One"} color={"g.2"} fontSize={"4xl"}>Adventurous</Text>
+            <Text cursor={"pointer"} onClick={()=>router.push("/")} fontFamily={"Yeseva One"} color={"g.2"} fontSize={"4xl"}>Adventurous</Text>
 
 
             <Spacer/>
@@ -59,11 +62,11 @@ const Navbar = ({children}) => {
                 <Drawer
 
                         isOpen={isOpen}
-                placement='left'
+                placement='right'
                 onClose={onClose}
                 >
                 <DrawerOverlay/>
-                <DrawerContent bg={"gray.50"} roundedRight={"xl"}>
+                <DrawerContent bg={"gray.50"} roundedLeft={"xl"}>
                 <DrawerCloseButton/>
                 <DrawerHeader>Account</DrawerHeader>
 
@@ -72,10 +75,7 @@ const Navbar = ({children}) => {
                 <Avatar src={user.profileImage} size={'2xl'}/>
                 <Text color={"g.1"} fontWeight={"semibold"} fontSize={"xl"}>{user.username}</Text>
 
-                    <Button mt={2} color={"g.1"} width={"100%"}>
-                        <Icon w={5} h={5} mr={5} as={FiClipboard}  />
-                        My Activities
-                    </Button>
+                    <MyTickets/>
                     <Button mt={2} color={"g.1"} width={"100%"}>
                         <Icon w={5} h={5} mr={5} as={FaRegBell}  />
                         Notifications
