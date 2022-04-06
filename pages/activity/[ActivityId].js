@@ -182,16 +182,4 @@ const ActivityPage = () => {
         </>
     );
 };
-export async function getServerSideProps({query}) {
-    const {ActivityId} = query;
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/`)
-    const data = res.data
-    console.log(data)
-
-    return {
-        props: {
-            ninja:data
-        }, // will be passed to the page component as props
-    }
-}
 export default ActivityPage;
