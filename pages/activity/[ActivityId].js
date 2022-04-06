@@ -150,7 +150,7 @@ const ActivityPage = () => {
 
 
                 </HStack>
-                {isLoggedin &&<Center>
+              <Center>
                     <Flex zIndex={5} alignItems={"center"} rounded={"sm"} p={2} mx={14} position={"fixed"} bottom={5}
                           h={"70px"} w={"55%"} bg={"white"} shadow={"lg"}>
                         <Image rounded={"md"} w={"60px"} h={"60px"} fit={"cover"}
@@ -168,7 +168,7 @@ const ActivityPage = () => {
                             <Payment activityId={ActivityId} qty={quantity} total={total} text={text}/>
                         </HStack>
                     </Flex>
-                </Center>}
+                </Center>
 
                 <Box mx={"2rem"} mt={10}>
                     <HStack mb={7} alignItems={"baseline"}>
@@ -182,4 +182,16 @@ const ActivityPage = () => {
         </>
     );
 };
-    export default ActivityPage;
+export async function getServerSideProps({query}) {
+    const {ActivityId} = query;
+    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/`)
+    const data = res.data
+    console.log(data)
+
+    return {
+        props: {
+            ninja:data
+        }, // will be passed to the page component as props
+    }
+}
+export default ActivityPage;

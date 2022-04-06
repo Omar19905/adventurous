@@ -24,6 +24,7 @@ const AddActivity = ({getActivities}) => {
     const toast = useToast()
 
     const [title, setTitle] = useState("");
+    const[isLoading,setIsloading]=useState(false)
     const [description, setDescription] = useState("");
     const [picture, setPicture] = useState("");
     const [city, setCity] = useState("");
@@ -57,6 +58,7 @@ const AddActivity = ({getActivities}) => {
 
 
         function handleSubmit(e) {
+        setIsloading(true)
             let provider_cookies = JSON.parse(getCookie("provider"))
             console.log(provider_cookies._id.$oid)
 
@@ -79,6 +81,7 @@ const AddActivity = ({getActivities}) => {
 
             }).then(function (response) {
                 console.log(response.data)
+                setIsloading(false)
                 router.push('/provider/dashboard', undefined, {shallow: true})
                 getActivities()
                 toast({
@@ -140,7 +143,7 @@ const AddActivity = ({getActivities}) => {
                 </FormControl>
 
 
-                <Button onClick={()=>{
+                <Button disabled={isLoading} isLoading={isLoading} onClick={()=>{
                     handleSubmit()
 
                 }} _hover={{backgroundColor:"g.2",color:"white"}} px={25} position={"absolute"} bottom={10} right={10} bg={"g.2"}

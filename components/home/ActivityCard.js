@@ -10,9 +10,10 @@ const ActivityCard = ({activity}) => {
     let router = useRouter();
     return (
         <Box onClick={()=> router.push(`activity/${activity._id.$oid}`)} _hover={{cursor:"pointer"}} mt={"50px"}  shadow={"2xl"} position={"relative"} rounded={"3xl"} w={"400px"} h={"290px"} >
-            <Box  position={"absolute"} top={2} right={5} w={"60px"} h={"25px"} bg={"white"} rounded={"2xl"} fontWeight={"semibold"}>
+            {activity.rating>0&&<Box position={"absolute"} top={2} right={5} w={"60px"} h={"25px"} bg={"white"} rounded={"2xl"}
+                  fontWeight={"semibold"}>
                 <Center>{activity.rating} <Icon color={"#fcd34c"} as={HiStar}/> </Center>
-            </Box>
+            </Box>}
             {/*https://images.unsplash.com/photo-1485561222814-e6c50477491b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80*/}
             <Image h={"100%"}  rounded={"3xl"} w={"100%"} src={activity.picture}/>
             <HStack h={16} px={4} w={"100%"} position={"absolute"} bottom={-7} bg={"white"} rounded={"2xl"}>

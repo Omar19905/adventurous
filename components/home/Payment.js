@@ -18,7 +18,6 @@ import {getCookie} from "cookies-next";
 import axios from "axios";
 import Lottie from 'react-lottie';
 import successful from '../../public/lotties/payment-successful.json';
-import {router} from "next/client";
 import {useRouter} from "next/router";
 const defaultOptions = {
     loop: false,
