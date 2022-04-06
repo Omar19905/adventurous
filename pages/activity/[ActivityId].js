@@ -182,13 +182,4 @@ const ActivityPage = () => {
         </>
     );
 };
-export async function getServerSideProps(context) {
-    // const id = context.query.ActivityId;
-    console.log("hello")
-    return {
-        props: {
-            hello:"jjksk"
-        }, // will be passed to the page component as props
-    }
-}
     export default ActivityPage;
