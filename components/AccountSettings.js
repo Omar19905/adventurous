@@ -33,6 +33,7 @@ import {MdOutlineManageAccounts} from "react-icons/md";
 
 const AccountSettings = ({user,setUser}) => {
     const toast = useToast()
+    let audio = new Audio("/success.mp3")
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [username, setUserName] = useState(user.username)
@@ -88,6 +89,8 @@ const AccountSettings = ({user,setUser}) => {
             setUser(JSON.parse(getCookie("user")))
             console.log(user.user_id);
             setIsSubmitting(false);
+            audio.play()
+
             toast({
                 title: 'Success',
                 position:"top-right",

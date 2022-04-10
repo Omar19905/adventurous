@@ -51,7 +51,7 @@ export default function SignupCard() {
         setIsValid(true);
         setError("");
         axios({
-            method: 'put',
+            method: 'post',
             url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/provider/signup',
             data: {
                 company_name: companyName,

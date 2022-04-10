@@ -18,6 +18,7 @@ import axios from "axios";
 import {getCookie, setCookies} from "cookies-next";
 
 const Review = ({getRatings,activityId}) => {
+    let audio = new Audio("/success.mp3")
     const toast = useToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [rating,setRating] = useState(0)
@@ -53,6 +54,7 @@ const Review = ({getRatings,activityId}) => {
             }
 
         }).then(function (response) {
+            audio.play()
             toast({
                 title: 'Review added',
                 position:"top-right",

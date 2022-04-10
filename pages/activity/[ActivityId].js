@@ -10,7 +10,7 @@ import {
     StatHelpText,
     StatLabel,
     StatNumber,
-    Text, useNumberInput
+    Text, useNumberInput, VStack
 } from "@chakra-ui/react";
 import Navbar from "../../components/Navbar";
 import Rating from 'react-rating';
@@ -155,13 +155,15 @@ const ActivityPage = () => {
                           h={"70px"} w={"55%"} bg={"white"} shadow={"lg"}>
                         <Image rounded={"md"} w={"60px"} h={"60px"} fit={"cover"}
                                src={activity.picture}/>
-                        <Text ml={2} fontSize={"xl"}>Hot Air Balloon Ride</Text>
+                        <Text ml={2} fontSize={"xl"}>{activity.title}</Text>
                         <Spacer/>
-                        <HStack maxW='180px'>
+                        <Text mr={2} fontSize={"md"} color={"g.1"} fontWeight={"semibold"}>Participants</Text>
+                            <HStack maxW='180px'>
                             <Button {...inc}>+</Button>
                             <Input {...input} />
                             <Button {...dec}>-</Button>
                         </HStack>
+
                         <Spacer/>
                         <HStack>
                             <Text>${total}</Text>

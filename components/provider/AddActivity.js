@@ -32,6 +32,7 @@ const AddActivity = ({getActivities}) => {
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
     const [show, setShow] = useState(false);
+    let audio = new Audio("/success.mp3")
 
 
     function handleTitleChange  (e) {
@@ -80,10 +81,11 @@ const AddActivity = ({getActivities}) => {
                 }
 
             }).then(function (response) {
-                console.log(response.data)
                 setIsloading(false)
                 router.push('/provider/dashboard', undefined, {shallow: true})
                 getActivities()
+                audio.play()
+
                 toast({
                     title: 'Activity added',
                     position:"top-right",

@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Box, Button, Divider, HStack, Input} from "@chakra-ui/react";
 import Select from 'react-select'
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker from 'react-modern-calendar-datepicker';
+
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
