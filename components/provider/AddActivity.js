@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Alert, AlertIcon,
     Box,
@@ -18,6 +18,7 @@ import BackButton from "../BackButton";
 import axios from "axios";
 import {getCookie, setCookies} from "cookies-next";
 import {useRouter} from "next/router";
+import Select from "react-select";
 
 const AddActivity = ({getActivities}) => {
     const router = useRouter()
@@ -29,12 +30,34 @@ const AddActivity = ({getActivities}) => {
     const [picture, setPicture] = useState("");
     const [city, setCity] = useState("");
     const [date, setDate] = useState("");
-    const [category, setCategory] = useState("");
+    const [categories, setCategories] = useState([]);
     const [price, setPrice] = useState("");
     const [show, setShow] = useState(false);
-    let audio = new Audio("/success.mp3")
+    const [selectedCategory,setSelectedCategory] = useState("")
 
 
+    useEffect(()=>{
+        axios({
+            method: 'get',
+            url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/admin/get_categories',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(function (response) {
+            let options = response.data
+            let data = []
+            for (let i = 0; i < options.length; i++) {
+                data.push({
+                    value: options[i].name,
+                    label: options[i].name
+                })
+
+                setCategories(data)
+            }
+
+        })
+
+    },[])
     function handleTitleChange  (e) {
         setTitle(e.target.value);
     }
@@ -73,7 +96,7 @@ const AddActivity = ({getActivities}) => {
                     picture:picture,
                     city:city,
                     date:date,
-                    category:category,
+                    category:selectedCategory,
                     price:price
                 },
                 headers: {
@@ -84,7 +107,6 @@ const AddActivity = ({getActivities}) => {
                 setIsloading(false)
                 router.push('/provider/dashboard', undefined, {shallow: true})
                 getActivities()
-                audio.play()
 
                 toast({
                     title: 'Activity added',
@@ -113,15 +135,20 @@ const AddActivity = ({getActivities}) => {
             <Box mt={0} ml={"50px"}>
                 <Center><Text mx={"auto"} mb={6} fontWeight={"semibold"} color={"g.1"} fontSize={"2xl"}>Add Activity</Text></Center>
             <HStack spacing={10}>
-                <FormControl w={250} id="title" isRequired>
+                <FormControl  id="title" isRequired>
                     <FormLabel fontSize={"xl"}>Title</FormLabel>
                     <Input onChange={handleTitleChange} type="text"/>
                 </FormControl>
-                <FormControl w={250} id="price" isRequired>
+                <FormControl  id="price" isRequired>
                     <FormLabel fontSize={"xl"}>Price</FormLabel>
                     <Input onChange={handlePriceChange} type="number"/>
                 </FormControl>
-                <FormControl w={250} id="date" isRequired>
+                <FormControl  id="category" isRequired>
+                    <FormLabel fontSize={"xl"}>Category</FormLabel>
+                    <Select defaultValue={setSelectedCategory} onChange={(e) => setSelectedCategory(e.value)}
+                            placeholder={"Category"} options={categories}/>
+                </FormControl>
+                <FormControl  id="date" isRequired>
                     <FormLabel fontSize={"xl"}>Date</FormLabel>
                     <Input onChange={handleDateChange} type="date"/>
                 </FormControl>
@@ -130,12 +157,14 @@ const AddActivity = ({getActivities}) => {
                 <HStack spacing={10} mt={5}>
                     <FormControl w={250} id="city" isRequired>
                     <FormLabel fontSize={"xl"}>City</FormLabel>
-                    <Input onChange={handleCityChange} type="text"/>
+                        <Select onChange={(city)=>setCity(city.value)} placeholder={"city"} options={regions}/>
                 </FormControl>
+
                     <FormControl w={250} id="picture" isRequired>
                     <FormLabel fontSize={"xl"}>Picture</FormLabel>
                     <Input overflow={"hidden"} onChange={handlePictureChange} w={"550px"} type="text"/>
                 </FormControl>
+
 
                 </HStack>
 
@@ -154,5 +183,78 @@ const AddActivity = ({getActivities}) => {
         </>
     );
 };
+const regions = [
+    {
+
+        value: "Riyadh",
+        label: "Riyadh"
+
+    },
+    {
+
+        value: "Makkah",
+        label: "Makkah",
+
+    },
+    {
+
+        value: "Madinah",
+        label: "Madinah",
+
+    },
+    {
+
+        value: "Qassim",
+        label: "Qassim",
+    },
+    {
+
+        value: "Eastern Province",
+        label: "Eastern Province",
+    },
+    {
+
+        value: "Asir",
+        label: "Asir",
+    },
+    {
+
+        value: "Tabuk",
+        label: "Tabuk",
+
+    },
+    {
+
+        value: "Hail",
+        label: "Hail",
+
+    },
+    {
+
+
+        value: "Northern Borders",
+        label: "Northern Borders",
+
+    },
+    {
+
+        value: "Jazan",
+        label: "Jazan",
+
+    },
+    {
+
+        value: "Najran",
+        label: "Najran",
+    },
+    {
+        value: "Bahah",
+        label: "Bahah",
+    },
+    {
+        value: "Jawf",
+        label: "Jawf",
+    }
+]
 
 export default AddActivity;

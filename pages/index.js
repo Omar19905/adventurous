@@ -3,13 +3,32 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Navbar from "../components/Navbar";
 import {Box, Button, Text} from "@chakra-ui/react";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../components/Header";
 import ActivityCard from "../components/home/ActivityCard";
 import ActivitiesList from "../components/home/ActivitesList";
 import axios from "axios";
+import Typist from "react-typist";
+import Filters from "../components/Filters";
 
 export default function Home() {
+
+    const[activities, setActivities] =useState([]);
+    const [isLoading,setIsloading]=useState(true);
+
+    useEffect(()=>{
+        axios({
+            method: 'get',
+            url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/get/activities',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(function (response) {
+            setActivities(response.data)
+            setIsloading(false)
+        })
+    },[])
+
   return (
       <Box bg={"gray.50"}>
           <div>
@@ -19,11 +38,31 @@ export default function Home() {
                   <link rel="icon" href="/favicon.ico"/>
               </Head>
 
-              <Header/>
+
+              <Navbar>
+                  <Box textAlign={"center"} color={"white"} fontSize={"6xl"} w='100%' h='21vh' >
+                      <Typist cursor={{
+                          show: true,
+                          blink: true,
+                          element: '|',
+                          hideWhenDone: true,
+                          hideWhenDoneDelay: 333,
+                      }} >
+                          Life is an event.
+                          <br/>
+                          Make it unforgettable
+                          <Typist.Backspace count={13} delay={250} />
+                          <Text display={"inline"} color={"g.2"}>memorable !</Text>
+                      </Typist>
+                  </Box>
+
+                  <Filters setIsloading={setIsloading} setActivities={setActivities}/>
+
+              </Navbar>
 
 
 
-              <ActivitiesList/>
+              <ActivitiesList activities={activities} isLoading={isLoading}/>
 
 
 

@@ -17,6 +17,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import { setCookies ,getCookie} from 'cookies-next';
 import { useRouter } from 'next/router'
+import ForgetPassword from "../components/ForgetPassword";
 
 
 export default function SigninCard() {
@@ -151,7 +152,7 @@ export default function SigninCard() {
                         </Stack>
                         <Stack pt={6}>
                             <Text  align={'center'}>
-                                forget password? <Link href={"/forget"} color={'g.2'}>click here</Link>
+                                forget password? <ForgetPassword email={email} type={"user"}/>
                             </Text>
                         </Stack>
                     </Stack>

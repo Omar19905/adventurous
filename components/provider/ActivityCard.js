@@ -16,6 +16,7 @@ import {
 import {FiCalendar, FiEdit, FiMapPin, FiMoreHorizontal, FiTrash} from "react-icons/fi";
 import {useRouter} from 'next/router'
 import axios from "axios";
+import EditActivity from "./EditActivity";
 
 const ActivityCard = ({activities,setActivity,getActivities,isLoading}) => {
     const router = useRouter()
@@ -58,15 +59,7 @@ const ActivityCard = ({activities,setActivity,getActivities,isLoading}) => {
                             <Icon as={FiMoreHorizontal} mt={"27%"} color={"#fff"} w={6} h={6}/>
                         </MenuButton>
                         <MenuList color={"g.2"}>
-                            <MenuItem onClick={() => {
-                                setActivity(activity)
-                                router.push('/provider/edit', undefined, {shallow: true});
-
-                            }}
-                            >
-                                <Icon  pr={1} as={FiEdit} color={"g.2"} w={6} h={6}/>
-                                <Text fontWeight={"semibold"} color={"g.1"}>Edit</Text>
-                            </MenuItem>
+                            <EditActivity activity={activity} getActivities={getActivities}/>
                             <MenuItem onClick={()=>{
                                handleDeleteActivity(activity._id.$oid)
 

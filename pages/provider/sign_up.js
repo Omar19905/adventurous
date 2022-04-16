@@ -17,23 +17,25 @@ import {
 import {useEffect, useState} from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from "axios";
+import PasswordStrengthBar from "react-password-strength-bar";
 export default function SignupCard() {
     const [companyName, setCompanyName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [score, setScore]=useState("");
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const[isValid,setIsValid] = useState(password===""||companyName===""||email==="")
+    const[isValid,setIsValid] = useState(password===""||companyName===""||email===""||score<=1)
     const[isSubmitting,setIsSubmitting] = useState(false)
 
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(()=>{
-        if (password==="" ||companyName===""||email==="")
+        if (password==="" ||companyName===""||email===""||score<=1)
             setIsValid(true)
         else setIsValid(false )
-    },[companyName,password,email])
+    },[companyName,password,email,score])
 
     function handleCompanyNameChange  (e) {
         setCompanyName(e.target.value);
@@ -148,6 +150,8 @@ export default function SignupCard() {
                                         {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                     </Button>
                                 </InputRightElement>
+                                <PasswordStrengthBar onChangeScore={(score => setScore(score))} password={password} />
+
                             </InputGroup>
                         </FormControl>
                         <Stack spacing={10} pt={2}>

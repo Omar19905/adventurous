@@ -17,24 +17,27 @@ import {
 import {useEffect, useState} from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 export default function SignupCard() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [score, setScore]=useState("");
+
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const[isValid,setIsValid] = useState(password===""||userName===""||email==="")
+    const[isValid,setIsValid] = useState(password===""||userName===""||email===""||score<=1)
     const[isSubmitting,setIsSubmitting] = useState(false)
 
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(()=>{
-        if (password==="" ||userName===""||email==="")
+        if (password==="" ||userName===""||email===""||score<=1)
             setIsValid(true)
         else setIsValid(false )
-    },[userName,password,email])
+    },[userName,password,email,score])
 
     function handleUserNameChange  (e) {
         setUserName(e.target.value);
@@ -90,13 +93,13 @@ export default function SignupCard() {
             bg={'gray.50'}>
 
             <HStack>
-                <Box roundedRight={"lg"} h={"100vh"} bgGradient={"linear(225deg, #cc2b5e 0%, #753a88 100%)"} w={"30vw"}>
+                <Box roundedRight={"lg"} h={"100vh"} bg={"g.1"} w={"30vw"}>
 
                     <Center flexDir={"column"} >
-                        <Text color={"white"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
-                        <Text mt={5} color={"white"} fontSize={"2xl"}>want to grow up your business ?</Text>
+                        <Text color={"g.2"} pt={"50%"} fontSize={"6xl"} fontFamily={"Yeseva One"}>Adventurous</Text>
+                        <Text mt={5} color={"g.2"} fontSize={"2xl"}>want to grow up your business ?</Text>
                         <Button _hover={{textDecoration: "none"}} as={Link} href={"/provider/sign_up"} mt={2} size={"lg"} rounded={"3xl"} color={"white"} bg={"transparent"} border={"4px white solid"}>
-                            Sign for Providers
+                            Sign up for Providers
                         </Button>
                     </Center>
 
@@ -143,7 +146,7 @@ export default function SignupCard() {
                         </FormControl>
                         <FormControl id="password" isRequired>
                             <FormLabel>Password</FormLabel>
-                            <InputGroup>
+                            <InputGroup mb={8}>
                                 <Input onChange={handlePasswordChange} type={showPassword ? 'text' : 'password'} />
                                 <InputRightElement h={'full'}>
                                     <Button
@@ -154,7 +157,10 @@ export default function SignupCard() {
                                         {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                     </Button>
                                 </InputRightElement>
+
                             </InputGroup>
+                            <PasswordStrengthBar onChangeScore={(score => setScore(score))} password={password} />
+
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button
@@ -163,17 +169,17 @@ export default function SignupCard() {
                                 onClick={handleSubmit}
                                 rounded={"3xl"}
                                 size="lg"
-                                bg={'#cc2b5e'}
+                                bg={'g.2'}
                                 color={'white'}
                                 _hover={{
-                                    bg: '#a61e47',
+                                    bg: 'g.2',
                                 }}>
                                 Sign up
                             </Button>
                         </Stack>
                         <Stack pt={6}>
                             <Text  align={'center'}>
-                                Already a user? <Link href={"/sign_in"} color={'#cc2b5e'}>sign in</Link>
+                                Already a user? <Link href={"/sign_in"} color={'g.2'}>sign in</Link>
                             </Text>
                         </Stack>
                     </Stack>

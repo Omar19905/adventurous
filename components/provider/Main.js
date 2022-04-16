@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <SimpleGrid mx={10} mt={10} columns={4} spacingX='20px' spacingY='20px'>
             <VStack >
-                <Box _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
+                <Box onClick={() => router.push('/provider/edit_profile', undefined, {shallow: true})} _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
                     <Center><Icon as={FiUser} mt={"27%"} color={"g.2"} w={9} h={9}/></Center>
                 </Box>
                 <Text color={"g.1"} fontSize={"lg"} fontWeight={"bold"}>Account</Text>

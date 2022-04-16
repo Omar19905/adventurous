@@ -28,6 +28,7 @@ import Header from "../../components/provider/Header";
 import ActivityCard from "../../components/provider/ActivityCard";
 import {checkCookies, getCookie, setCookies} from "cookies-next";
 import Statistics from "../../components/provider/Statistics";
+import EditProfile from "../../components/provider/EditProfile";
 
 
 const Index = () => {
@@ -109,9 +110,9 @@ const Index = () => {
                     <Divider orientation={"horizontal"}/>
 
                     {index === "dashboard" && <Main/>}
+                    {index === "edit_profile" && <EditProfile activity={activity} />}
                     {index === "statistics" && <Statistics/>}
                     {index === "add" && <AddActivity getActivities={getActivities}/>}
-                    {index === "edit" && <EditActivity activity={activity}/>}
                 </Box>
 
             </HStack>
