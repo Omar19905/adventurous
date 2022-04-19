@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import {ChakraProvider,extendTheme} from "@chakra-ui/react";
+import 'rsuite/dist/rsuite.min.css';
 
 const theme = extendTheme({
     colors: {

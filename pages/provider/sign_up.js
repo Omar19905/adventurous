@@ -150,9 +150,10 @@ export default function SignupCard() {
                                         {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                     </Button>
                                 </InputRightElement>
-                                <PasswordStrengthBar onChangeScore={(score => setScore(score))} password={password} />
 
                             </InputGroup>
+                            <PasswordStrengthBar onChangeScore={(score => setScore(score))} password={password} />
+
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button

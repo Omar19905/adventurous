@@ -14,7 +14,7 @@ const Main = () => {
                 <Text color={"g.1"} fontSize={"lg"} fontWeight={"bold"}>Account</Text>
             </VStack>
 
-            <VStack >
+            <VStack onClick={() => router.push('/provider/send_notifications', undefined, {shallow: true})} >
                 <Box _hover={{cursor:"pointer"}} rounded={"2xl"} bg='gray.100' height='80px' w={"90px"}>
                     <Center><Icon as={FiBell} mt={"27%"} color={"g.2"} w={9} h={9}/></Center>
                 </Box>

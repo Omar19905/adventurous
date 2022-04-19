@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button, Center, Divider, HStack, Icon, Image, Spacer, Text, VStack} from "@chakra-ui/react";
+import {Badge, Box, Button, Center, Divider, HStack, Icon, Image, Spacer, Text, VStack} from "@chakra-ui/react";
 import {HiStar} from "react-icons/hi";
 
 import Moment from 'react-moment';
@@ -20,15 +20,20 @@ const ActivityCard = ({activity}) => {
                 {/*info*/}
                 <VStack  align={"flex-start"}  justify={"left"} w={"82%"}>
                     {/*Title*/}
-                    <Text  fontSize={"xl"} fontWeight={"bold"}>{activity.title}</Text>
-                    <HStack w={"300px"}>{/*City*/}
+                    <Text  fontSize={"xl"} fontWeight={"bold"}>{activity.title}
+                        <Badge ml='1' colorScheme='linkedin'>
+                            {activity.category}
+                    </Badge>
+                    </Text>
+
+                    <HStack w={"285px"}>{/*City*/}
                         <Text color={"gray.500"}>{activity.city} |</Text>
 
                         {/*Date*/}
                         <Text color={"gray.500"}><Moment format={"D MMM YYYY"}>{activity.date}</Moment></Text></HStack>
                 </VStack>
                 <Spacer/>
-                <Text fontSize={"xl"} fontWeight={"semibold"}  color={"g.2"} >${activity.price} </Text>
+                <Text fontSize={"xl"} fontWeight={"semibold"}  color={"g.2"} >SAR{activity.price} </Text>
             </HStack>
         </Box>
     );

@@ -19,6 +19,8 @@ import axios from "axios";
 import {getCookie, setCookies} from "cookies-next";
 import {useRouter} from "next/router";
 import Select from "react-select";
+import { DatePicker } from 'rsuite';
+
 
 const AddActivity = ({getActivities}) => {
     const router = useRouter()
@@ -29,7 +31,7 @@ const AddActivity = ({getActivities}) => {
     const [description, setDescription] = useState("");
     const [picture, setPicture] = useState("");
     const [city, setCity] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(null);
     const [categories, setCategories] = useState([]);
     const [price, setPrice] = useState("");
     const [show, setShow] = useState(false);
@@ -95,7 +97,7 @@ const AddActivity = ({getActivities}) => {
                     description:description,
                     picture:picture,
                     city:city,
-                    date:date,
+                    date:removeTime(date),
                     category:selectedCategory,
                     price:price
                 },
@@ -126,7 +128,13 @@ const AddActivity = ({getActivities}) => {
             })
         }
 
-
+    function removeTime(date = new Date()) {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
 
     return (
 
@@ -150,7 +158,9 @@ const AddActivity = ({getActivities}) => {
                 </FormControl>
                 <FormControl  id="date" isRequired>
                     <FormLabel fontSize={"xl"}>Date</FormLabel>
-                    <Input onChange={handleDateChange} type="date"/>
+                    {/*<Input onChange={handleDateChange} type="date"/>*/}
+                    <DatePicker format={"yyyy-MM-dd"} isoWeek value={date} onChange={setDate}  oneTap placeholder="Select Date" style={{ width: 200 }} />
+
                 </FormControl>
             </HStack>
 

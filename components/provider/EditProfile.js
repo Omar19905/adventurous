@@ -34,7 +34,7 @@ const EditProfile = () => {
         console.log(target)
         console.log(email)
         axios({
-            method: 'post',
+            method: 'put',
             url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/edit/provider_account',
             data: {
                 provider_id: provider._id.$ioid,

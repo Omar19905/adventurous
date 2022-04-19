@@ -4,11 +4,13 @@ import Select from 'react-select'
 import axios from "axios";
 
 
+import { DatePicker } from 'rsuite';
+
 
 const Filters = ({setActivities,setIsloading}) => {
     const [selectedDay, setSelectedDay] = useState(null);
-    const[city, setCity]=useState(null)
-    const[category, setCategory]=useState(null)
+    const[city, setCity]=useState("")
+    const[category, setCategory]=useState("")
     const [categories, setCategories] = useState([])
 
 
@@ -30,7 +32,6 @@ const Filters = ({setActivities,setIsloading}) => {
                 data.push({
                     value: options[i].name,
                     label: options[i].name,
-                    planeId: options[i].name,
 
                 })
 
@@ -41,6 +42,7 @@ const Filters = ({setActivities,setIsloading}) => {
     }
 
     function getActivities(){
+
         console.log(city+selectedDay+category)
         setIsloading(true)
         axios({
@@ -49,7 +51,7 @@ const Filters = ({setActivities,setIsloading}) => {
             params: {
                 city:city,
                 category:category,
-                date:selectedDay
+                date:removeTime(selectedDay)
             },
             headers: {
                 "X-Requested-With": "XMLHttpRequest"
@@ -61,6 +63,18 @@ const Filters = ({setActivities,setIsloading}) => {
     }
 
 
+    function removeTime(date = new Date()) {
+        if (date==null)
+            return
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
+
+
+
 
     return (
         <>
@@ -68,25 +82,37 @@ const Filters = ({setActivities,setIsloading}) => {
                    bg={"white"} w={"85%"} px={6} justify={"center"} mx={"auto"} spacing={10}>
             <Box py={"4px"} w={"50%"}>
 
-
-                <Input onChange={(e)=>setSelectedDay(e.target.value)} placeholder={"Date"} type={"date"}/>
+                <DatePicker  format={"yyyy-MM-dd"} value={selectedDay} onChange={setSelectedDay}  oneTap placeholder="Select Date" style={{ width: 220 }} />
+                {/*<Input onChange={(e)=>setSelectedDay(e.target.value)} placeholder={"Date"} type={"date"}/>*/}
 
             </Box>
-            {/*<Select placeholder={"Date"} w={"50%"} border={"none"} >*/}
-            {/*    <option onClick={console.log("hi")}  value='option1'>Option1</option>*/}
-            {/*    <option value='option1'>Option 1</option>*/}
-            {/*    <option value='option1'>Option 1</option>*/}
-            {/*</Select>*/}
+
+
 
             <Divider h={"60%"} orientation='vertical'/>
-            <Box w={"50%"}><Select onChange={(city)=>setCity(city.value)} placeholder={"Region"} options={regions}/></Box>
+            <Box w={"50%"}><Select           isClearable={true}
+                                             onChange={(e) => {
+                                                 if (e == null){
+                                                     setCity(null)
+                                                 }
+                                                 else
+                                                     setCity(e.value)
+                                             }}
+                                              placeholder={"Region"} options={regions}/></Box>
             {/*<Select placeholder={"Type of Activity"}  w={"50%"} border={"none"} >*/}
             {/*    <option onClick={console.log("hi")}  value='option1'>Option1</option>*/}
             {/*    <option value='option1'>Option 1</option>*/}
             {/*    <option value='option1'>Option 1</option>*/}
             {/*</Select>*/}
             <Divider h={"60%"} orientation='vertical'/>
-            <Box w={"50%"}><Select onChange={(e) => setCategory(e.value)}
+            <Box w={"50%"}><Select isClearable={true}
+                                   onChange={(e) => {
+                                       if (e == null)
+                                           setCategory(null)
+                                       else
+                                           setCategory(e.value)
+                                   }}
+
                                    placeholder={"Category"} options={categories}/></Box>
             {/*<Select placeholder='City' w={"50%"} border={"none"} >*/}
             {/*    <option onClick={console.log("hi")}  value='option1'>Option1</option>*/}

@@ -146,7 +146,7 @@ const EditActivity = ({activity,getActivities}) => {
                                 </FormControl>
                                 <FormControl  id="category" isRequired>
                                     <FormLabel fontSize={"xl"}>Category</FormLabel>
-                                    <Select defaultValue={setSelectedCategory} onChange={(e) => setSelectedCategory(e.value)}
+                                    <Select  defaultValue={{ label: selectedCategory }}  onChange={(e) => setSelectedCategory(e.value)}
                                             placeholder={"Category"} options={categories}/>
                                 </FormControl>
                                 <FormControl  id="date" isRequired>
@@ -158,7 +158,7 @@ const EditActivity = ({activity,getActivities}) => {
                             <HStack spacing={10} mt={5}>
                                 <FormControl w={250} id="city" isRequired>
                                     <FormLabel fontSize={"xl"}>City</FormLabel>
-                                    <Input value={city} onChange={(e)=>setCity(e.target.value)}  type="text"/>
+                                    <Select defaultValue={{ label: city }} onChange={(city)=>setCity(city.value)} placeholder={"city"} options={regions}/>
                                 </FormControl>
 
                                 <FormControl w={250} id="picture" isRequired>
@@ -186,5 +186,80 @@ const EditActivity = ({activity,getActivities}) => {
 
     );
 }
+
+const regions = [
+    {
+
+        value: "Riyadh",
+        label: "Riyadh"
+
+    },
+    {
+
+        value: "Makkah",
+        label: "Makkah",
+
+    },
+    {
+
+        value: "Madinah",
+        label: "Madinah",
+
+    },
+    {
+
+        value: "Qassim",
+        label: "Qassim",
+    },
+    {
+
+        value: "Eastern Province",
+        label: "Eastern Province",
+    },
+    {
+
+        value: "Asir",
+        label: "Asir",
+    },
+    {
+
+        value: "Tabuk",
+        label: "Tabuk",
+
+    },
+    {
+
+        value: "Hail",
+        label: "Hail",
+
+    },
+    {
+
+
+        value: "Northern Borders",
+        label: "Northern Borders",
+
+    },
+    {
+
+        value: "Jazan",
+        label: "Jazan",
+
+    },
+    {
+
+        value: "Najran",
+        label: "Najran",
+    },
+    {
+        value: "Bahah",
+        label: "Bahah",
+    },
+    {
+        value: "Jawf",
+        label: "Jawf",
+    }
+]
+
 
 export default EditActivity;

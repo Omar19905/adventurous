@@ -8,7 +8,7 @@ import {
     FormLabel,
     HStack,
     Icon,
-    Input,
+    Input, SimpleGrid,
     Spacer,
     useToast,
     VStack
@@ -26,7 +26,7 @@ const Categories = () => {
     const categoriesList = categories.map((category, index) => (
         <div key={index}>
             <Flex px={4} direction={"row"} textAlign={"left"} fontSize={"xl"} fontWeight={"semibold"} color={"g.1"}
-                  bg={"gray.200"} rounded={"lg"} w={"250px"} h={10}>
+                  bg={"transparent"} border={"2px #303179 solid"} rounded={"xl"} borderrounded={"lg"} w={"250px"} h={10}>
                 {category.name}
                 <Spacer/>
                 <Box cursor={"pointer"} onClick={() => {
@@ -86,7 +86,6 @@ const Categories = () => {
 
         }).then(function (response) {
             getCategories()
-            audio.play()
             toast({
                 title: 'Success',
                 position: "top-right",
@@ -118,6 +117,7 @@ const Categories = () => {
                 "X-Requested-With": "XMLHttpRequest"
             }
         }).then(function (response) {
+
             console.log(response.data)
             setCategories(response.data)
         })
@@ -133,9 +133,10 @@ const Categories = () => {
                     <Button onClick={handleSubmit} px={16} color={"white"} ml={8} bg={"g.2"}>Add</Button>
                 </FormControl>
 
-                <VStack mt={5} alignItems={"start"}>
+
+                <SimpleGrid  mt={12} columns={3} spacing={10}>
                     {categoriesList}
-                </VStack>
+                </SimpleGrid>
 
 
             </Box>

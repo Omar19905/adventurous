@@ -17,11 +17,11 @@ import {FiCalendar, FiEdit, FiMapPin, FiMoreHorizontal, FiTrash} from "react-ico
 import {useRouter} from 'next/router'
 import axios from "axios";
 import EditActivity from "./EditActivity";
+import Moment from "react-moment";
 
 const ActivityCard = ({activities,setActivity,getActivities,isLoading}) => {
     const router = useRouter()
     const toast = useToast()
-
 
     function handleDeleteActivity(activityId){
         axios({
@@ -46,7 +46,10 @@ const ActivityCard = ({activities,setActivity,getActivities,isLoading}) => {
         })
     }
     const activitiesList = activities.map((activity) => (
+
         <div key={activity.id}>
+            {    console.table(activity.date)
+            }
             <Box p={3} mt={5} rounded={"2xl"} w={"90%"} mx={"auto"} minH={"130px"}
                  bg={"g.1"}>
                 <HStack mb={2}>
@@ -75,7 +78,8 @@ const ActivityCard = ({activities,setActivity,getActivities,isLoading}) => {
                 <HStack>
                     <Icon as={FiCalendar} color={"white"} w={6} h={6}/>
                     <Text fontSize={"lg"} fontWeight={"light"} color={"white"}>
-                        {activity.date}
+
+                        <Moment format={"D MMM YYYY"}>{activity.date}</Moment>
                     </Text>
                 </HStack>
 

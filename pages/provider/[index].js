@@ -29,6 +29,7 @@ import ActivityCard from "../../components/provider/ActivityCard";
 import {checkCookies, getCookie, setCookies} from "cookies-next";
 import Statistics from "../../components/provider/Statistics";
 import EditProfile from "../../components/provider/EditProfile";
+import SendNotifications from "../../components/provider/SendNotifications";
 
 
 const Index = () => {
@@ -110,6 +111,7 @@ const Index = () => {
                     <Divider orientation={"horizontal"}/>
 
                     {index === "dashboard" && <Main/>}
+                    {index === "send_notifications" && <SendNotifications/>}
                     {index === "edit_profile" && <EditProfile activity={activity} />}
                     {index === "statistics" && <Statistics/>}
                     {index === "add" && <AddActivity getActivities={getActivities}/>}
