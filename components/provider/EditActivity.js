@@ -27,6 +27,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import {FiEdit} from "react-icons/fi";
+import {DatePicker} from "rsuite";
 
 const EditActivity = ({activity,getActivities}) => {
     const [title, setTitle] = useState()
@@ -83,7 +84,7 @@ const EditActivity = ({activity,getActivities}) => {
                 description:description,
                 picture:picture,
                 city:city,
-                date:date,
+                date:removeTime(date),
                 category:selectedCategory,
                 price:price
             },headers: {
@@ -118,6 +119,17 @@ const EditActivity = ({activity,getActivities}) => {
         setDescription(activity.description)
 
     },[])
+
+
+    function removeTime(date = new Date()) {
+        if (date==null)
+            return
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -127,13 +139,13 @@ const EditActivity = ({activity,getActivities}) => {
                 Edit Activity
             </Box>
 
-            <Modal size={"5xl"} isOpen={isOpen} onClose={onClose}>
+            <Modal  size={"5xl"} isOpen={isOpen} onClose={onClose}>
 
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent >
                     <ModalHeader>Edit Activity</ModalHeader>
                     <ModalCloseButton/>
-                    <ModalBody>
+                    <ModalBody >
                         <Box mt={5} ml={"50px"}>
                                 <HStack mx={2} spacing={10}>
                                 <FormControl  id="title" isRequired>
@@ -149,9 +161,11 @@ const EditActivity = ({activity,getActivities}) => {
                                     <Select  defaultValue={{ label: selectedCategory }}  onChange={(e) => setSelectedCategory(e.value)}
                                             placeholder={"Category"} options={categories}/>
                                 </FormControl>
-                                <FormControl  id="date" isRequired>
+                                <FormControl zIndex={100}  id="date" isRequired>
                                     <FormLabel fontSize={"xl"}>Date</FormLabel>
-                                    <Input value={date} onChange={(e)=>setDate(e.target.value)} type="date"/>
+                                    {/*<DatePicker  format={"yyyy-MM-dd"} value={date} onChange={setDate}  oneTap placeholder="Select Date" style={{ width: 220 }} />*/}
+                                    <DatePicker  format={"yyyy-MM-dd"} defaultValue={new Date(activity.date)} onChange={setDate}  oneTap placeholder="Select Date" style={{ width: 220 }} />
+
                                 </FormControl>
                             </HStack>
 
