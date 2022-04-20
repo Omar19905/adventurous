@@ -54,7 +54,6 @@ const Review = ({getRatings,activityId}) => {
             }
 
         }).then(function (response) {
-            audio.play()
             toast({
                 title: 'Review added',
                 position:"top-right",

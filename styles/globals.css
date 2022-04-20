@@ -7,7 +7,9 @@ body {
   background-color: #F7FAFC;
 }
 
-
+.rs-anim-fade.rs-anim-in {
+  z-index: 10000;
+}
 
 ::-webkit-scrollbar{
   width: 0;

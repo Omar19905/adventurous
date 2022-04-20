@@ -47,7 +47,7 @@ const ActivityPage = () => {
     let quantity = input["aria-valuenow"]
 
     useEffect(()=>{
-        setTotal(quantity*250)
+        setTotal(quantity*activity.price)
         if (quantity>1)
         setText(`buy ${quantity} tickets`)
         else
@@ -121,7 +121,7 @@ const ActivityPage = () => {
             <Navbar/>
             <Flex direction={"column"} minH={"100vh"} minW={"100vw"} bg={"gray.50"}>
                 <HStack h={"fit-content"} w={"100%"} alignItems={"start"}  mt={14} mx={7}>
-                    <Image mt={0}  rounded={"2xl"} w={"550px"}
+                    <Image mt={0} mr={10}  rounded={"2xl"} w={"550px"}
                           src={activity.picture}/>
                     <Box>
                         <Text fontSize={"6xl"}>{activity.title}</Text>
@@ -141,9 +141,9 @@ const ActivityPage = () => {
                         </Stat>
 
                         {/*About*/}
-                        <Box mr={"2rem"} mt={5} >
-                                    <Text mt={2} color={"g.2"} fontSize={"4xl"} fontWeight={"semibold"} >Description </Text>
-                            {activity.description}
+                        <Box mr={"7rem"} mt={5} >
+                                    <Text mt={2}  color={"g.2"} fontSize={"4xl"} fontWeight={"semibold"} >Description </Text>
+                            <Text fontSize={"md"} fontWeight={"semibold"}>{activity.description}</Text>
                         </Box>
 
                     </Box>

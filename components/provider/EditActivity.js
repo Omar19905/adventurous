@@ -84,7 +84,7 @@ const EditActivity = ({activity,getActivities}) => {
                 description:description,
                 picture:picture,
                 city:city,
-                date:removeTime(date),
+                date:date,
                 category:selectedCategory,
                 price:price
             },headers: {
@@ -121,7 +121,8 @@ const EditActivity = ({activity,getActivities}) => {
     },[])
 
 
-    function removeTime(date = new Date()) {
+    function removeTime(date) {
+
         if (date==null)
             return
         return new Date(
@@ -164,8 +165,10 @@ const EditActivity = ({activity,getActivities}) => {
                                 <FormControl zIndex={100}  id="date" isRequired>
                                     <FormLabel fontSize={"xl"}>Date</FormLabel>
                                     {/*<DatePicker  format={"yyyy-MM-dd"} value={date} onChange={setDate}  oneTap placeholder="Select Date" style={{ width: 220 }} />*/}
-                                    <DatePicker  format={"yyyy-MM-dd"} defaultValue={new Date(activity.date)} onChange={setDate}  oneTap placeholder="Select Date" style={{ width: 220 }} />
-
+                                    <Box zIndex={100}><DatePicker format={"yyyy-MM-dd"} defaultValue={new Date(activity.date)}
+                                                   onChange={(e) => console.log(e)} oneTap placeholder="Select Date"
+                                                   style={{width: 220}}/></Box>
+                                    
                                 </FormControl>
                             </HStack>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Avatar, Box, Flex, HStack, Icon, Spacer, Text} from "@chakra-ui/react";
 import BackButton from "../BackButton";
 import TotalSales from "./statistics/TotalSales";
@@ -6,8 +6,51 @@ import MonthlySales from "./statistics/Monthly Sales";
 import TotalOrders from "./statistics/TotalOrders";
 import {HiStar} from "react-icons/hi";
 import MonthlyTarget from "./statistics/MonthlyTarget";
+import axios from "axios";
+import {getCookie, setCookies} from "cookies-next";
 
 const Statistics = () => {
+    const provider = JSON.parse(getCookie("provider"));
+
+    const [orders,setOrders] = useState("")
+    const [sales,setSales] = useState("")
+
+    let target = provider.monthly_target_sales;
+
+    target = sales/target*100;
+
+
+
+        useEffect(()=> {
+
+        axios({
+            method: 'get',
+            url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/get/total_sales',
+            params: {
+                provider_id: provider._id.$oid
+            },
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+
+        }).then(function (response) {
+            setSales(response.data.sales);
+            setOrders(response.data.orders);
+            console.log(response.data)
+
+        })
+
+            .catch(function (error) {
+
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                }
+            })
+    })
+
+
     return (
         <>
             <BackButton/>
@@ -34,11 +77,11 @@ const Statistics = () => {
 
                 {/*right*/}
                 <Box  width={"20%"}>
-                    <TotalOrders/>
+                    <TotalOrders orders={orders}/>
                     <br/>
-                    <TotalSales/>
+                    <TotalSales sales={sales}/>
                     <br/>
-                    <MonthlyTarget/>
+                    <MonthlyTarget target={target.toFixed(1)}/>
                 </Box>
 
         </HStack>

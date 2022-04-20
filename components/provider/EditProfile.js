@@ -37,7 +37,7 @@ const EditProfile = () => {
             method: 'put',
             url: 'https://vast-garden-51796.herokuapp.com/https://backend-advenerice.herokuapp.com/edit/provider_account',
             data: {
-                provider_id: provider._id.$ioid,
+                activity_provider_id: provider._id.$oid,
                 company_name:CName,
                 logo: logo,
                 email: email,
@@ -73,6 +73,7 @@ const EditProfile = () => {
         setCName(provider.company_name)
         setEmail(provider.email)
         setLogo(provider.logo)
+        setTarget(provider.monthly_target_sales)
     },[])
 
     return (

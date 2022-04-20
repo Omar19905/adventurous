@@ -2,6 +2,7 @@ import React from 'react';
 import {Avatar, Box, Divider, HStack, Icon, Spacer, Text, VStack} from "@chakra-ui/react";
 import {HiStar} from "react-icons/hi";
 import Rating from "react-rating";
+import Moment from "react-moment";
 
 const RatingCard = ({rating}) => {
     console.table(rating)
@@ -17,7 +18,9 @@ const RatingCard = ({rating}) => {
                         </Box>
                     </HStack>
                     <Spacer/>
-                    <Text mt={0} color={"gray.600"} fontSize={"lg"}>34 days ago</Text>
+                    <Text mt={0} color={"gray.600"} fontSize={"lg"}>
+                        <Moment fromNow>{rating.created_at}</Moment>
+                    </Text>
 
 
                 </HStack>
